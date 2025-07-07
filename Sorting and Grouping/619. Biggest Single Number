@@ -1,0 +1,12 @@
+select num
+from MyNumbers
+group by num
+having count(num) = 1 
+union all select null
+
+-- This adds one extra row to your result set: a row with num = NULL.
+
+-- Why? → So that when there are no single numbers, at least NULL is present in the result to choose from.
+
+ order by num desc
+ limit 1; 
