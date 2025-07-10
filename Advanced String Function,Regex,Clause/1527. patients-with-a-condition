@@ -1,0 +1,7 @@
+select patient_id,patient_name, conditions
+from Patients 
+where conditions like 'DIAB1%' 
+or conditions like '% DIAB1%'
+group by patient_id;
+-- % is Used:
+-- When you want to check if a string starts with, ends with, or contains a certain pattern, % helps define that pattern.
