@@ -1,0 +1,15 @@
+-- Why Use a JOIN in the DELETE?
+-- Because in SQL, to delete duplicates, you must:
+
+-- Identify which rows are duplicates.
+-- Find the one row to keep (the one with the smallest id).
+-- Delete the other rows with the same email but higher id.
+-- To do that, we use a self-join on the table.
+
+
+delete p1
+from Person p1
+--   Person p1: These are the rows we are trying to delete.
+join Person p2 
+--   Person p2: These are the "keeper" rows with smaller id for the same email.
+on p1.email = p2.email  and p1.id > p2.id;
