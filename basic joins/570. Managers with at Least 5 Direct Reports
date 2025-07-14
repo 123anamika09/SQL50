@@ -1,0 +1,15 @@
+-- 5 employees whose managerId is the manager's id
+select name from Employee
+where id in(
+    select managerId
+    from employee
+ where managerId is not null
+group by managerId
+having count(*) >= 5
+)
+
+
+-- Why a subquery?
+-- 💡 Because you're solving two separate tasks:
+-- 🔍 1. Find the ids of managers who have ≥ 5 direct reports
+--    2. Get the name of each manager using their id
