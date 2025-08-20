@@ -1,0 +1,10 @@
+-- The outer query wraps it as a column → so it always returns one row.
+select 
+( select distinct Salary  from employee
+--    The inner query finds the second salary (if it exists).
+order by salary desc
+-- offset usd to skip no of rows 
+limit 1
+offSet 1)as  SecondHighestSalary ;
+
+-- If the inner query returns nothing, the outer SELECT (...) gives NULL. ✅
