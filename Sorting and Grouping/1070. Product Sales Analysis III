@@ -1,0 +1,13 @@
+
+select s.product_id, s.year as first_year,s.quantity,s.price from sales s 
+join(
+select product_id , 
+ min(year) as first_year 
+--   here group by used to grp only year bt in that year we have different price and quantity so we cannot group it  
+--  here we only groud year and id 
+ from Sales
+ group by product_id 
+--   GROUP BY is used to combine rows that have the same values in one or more columns into groups.
+) t
+on
+s.product_id = t.product_id and s.year = t.first_year;
