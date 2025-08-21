@@ -1,0 +1,6 @@
+# Write your MySQL query statement below
+select customer_id from customer 
+group by customer_id
+having count(distinct product_key) =  (select count(*) from product);
+-- (SELECT COUNT(*) FROM Product) → Finds the total number of products available.
+-- COUNT(DISTINCT product_key) → Counts how many unique products the customer bought.
