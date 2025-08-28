@@ -1,0 +1,21 @@
+# Write your MySQL query statement bel
+select c.category,count(a.Account_id) as accounts_count
+from (
+    select "Low Salary" as category 
+    union all
+   select "Average Salary"
+   union all 
+   select "High Salary"
+)  as c
+left join Accounts a
+    ON(c.category = 'Low Salary' AND a.income < 20000)
+    OR(c.category = 'Average Salary' AND a.income BETWEEN 20000 AND 50000)
+    or(c.category = "High Salary" and a.income > 50000)
+ 
+group by c.category
+ORDER BY 
+    CASE c.category
+        WHEN 'High Salary' THEN 1
+        WHEN 'Low Salary' THEN 2
+        WHEN 'Average Salary' THEN 3
+    END;
