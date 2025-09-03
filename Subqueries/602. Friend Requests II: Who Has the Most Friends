@@ -1,0 +1,16 @@
+select id,count(*) as num
+from (
+    select requester_id as id from RequestAccepted
+union all  
+--  union all me duplicate entries allowed hote h bt union me duplicate entries nhi allowed hote h
+select accepter_id from  RequestAccepted
+)as friendCount
+group by id
+order by num desc limit 1;
+
+
+--  in this example  
+-- 1- 2 baar aa rha , 2 - 2 , 3-3, 4-1 
+
+--  to 1 k 2 friend h 2-2 .... sbse jada friend 3 k h so 
+
